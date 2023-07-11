@@ -1,6 +1,5 @@
 package Homework_2._Calculator;
 
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,8 +12,8 @@ public class CalculatorParameterizedTests {
     private final CalculatorService calculatorService = new CalculatorService();
 
     @ParameterizedTest
-    @MethodSource("ArgumentsPlus")
-    public void ArgumentsPlus(int num1, int num2) {
+    @MethodSource("argumentsPlus")
+    public void plus(int num1, int num2) {
         int expected = num1 + num2;
 
         Integer actual = calculatorService.plus(num1, num2);
@@ -22,7 +21,7 @@ public class CalculatorParameterizedTests {
         Assertions.assertEquals(expected, actual);
     }
 
-    private static Stream<Arguments> ArgumentsPlus() {
+    private static Stream<Arguments> argumentsPlus() {
         return Stream.of(
                 Arguments.of(5, 5),
                 Arguments.of(-5, 5),
@@ -32,7 +31,7 @@ public class CalculatorParameterizedTests {
     }
 
     @ParameterizedTest
-    @MethodSource("ArgumentsMinus")
+    @MethodSource("argumentsMinus")
     public void minus(int num1, int num2) {
         int expected = num1 - num2;
 
@@ -41,25 +40,7 @@ public class CalculatorParameterizedTests {
         Assertions.assertEquals(expected, actual);
     }
 
-    private static Stream<Arguments> ArgumentsMinus() {
-        return Stream.of(
-                Arguments.of(5, 5),
-                Arguments.of(-5, 5),
-                Arguments.of(0, 0)
-        );
-    }
-
-    @ParameterizedTest
-    @MethodSource("ArgumentsMultiply")
-    public void multiply(int num1, int num2) {
-        int expected = num1 * num2;
-
-        Integer actual = calculatorService.multiply(num1, num2);
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    private static Stream<Arguments> ArgumentsMultiply() {
+    private static Stream<Arguments> argumentsMinus() {
         return Stream.of(
                 Arguments.of(5, 5),
                 Arguments.of(-5, 5),
@@ -69,7 +50,26 @@ public class CalculatorParameterizedTests {
     }
 
     @ParameterizedTest
-    @MethodSource("ArgumentsDivide")
+    @MethodSource("argumentsMultiply")
+    public void multiply(int num1, int num2) {
+        int expected = num1 * num2;
+
+        Integer actual = calculatorService.multiply(num1, num2);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    private static Stream<Arguments> argumentsMultiply() {
+        return Stream.of(
+                Arguments.of(5, 5),
+                Arguments.of(-5, 5),
+                Arguments.of(0, 0),
+                Arguments.of(-5, -5)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("argumentsDivide")
     public void divide(int num1, int num2) {
         int expected = num1 / num2;
 
@@ -78,7 +78,7 @@ public class CalculatorParameterizedTests {
         Assertions.assertEquals(expected, actual);
     }
 
-    private static Stream<Arguments> ArgumentsDivide() {
+    private static Stream<Arguments> argumentsDivide() {
         return Stream.of(
                 Arguments.of(5, 5),
                 Arguments.of(-5, 5),

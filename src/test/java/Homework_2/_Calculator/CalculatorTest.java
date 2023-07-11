@@ -57,9 +57,7 @@ class CalculatorTest {
 
         Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> {
-                    calculatorService.divide(num1, num2);
-                }
+                () -> calculatorService.divide(num1, num2)
         );
     }
 }

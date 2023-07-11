@@ -21,7 +21,7 @@ public class CalculatorController {
             @RequestParam(value = "num2", required = false) Integer num2
     ) {
         if (num1 == null || num2 == null) {
-            return Integer.valueOf("Вы забыли написать входное значение.");
+            throw new RuntimeException("Вы забыли написать входное значение.");
         }
         return numberService.plus(num1, num2);
     }
@@ -32,7 +32,7 @@ public class CalculatorController {
             @RequestParam(value = "num2", required = false) Integer num2
     ) {
         if (num1 == null || num2 == null) {
-            return Integer.valueOf("Вы забыли написать входное значение.");
+            throw new RuntimeException("Вы забыли написать входное значение.");
         }
         return numberService.minus(num1, num2);
     }
@@ -43,7 +43,7 @@ public class CalculatorController {
             @RequestParam(value = "num2", required = false) Integer num2
     ) {
         if (num1 == null || num2 == null) {
-            return Integer.valueOf("Вы забыли написать входное значение.");
+            throw new RuntimeException("Вы забыли написать входное значение.");
         }
         return numberService.multiply(num1, num2);
     }
