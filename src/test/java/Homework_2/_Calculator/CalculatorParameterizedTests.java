@@ -8,32 +8,27 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 public class CalculatorParameterizedTests {
-
     private final CalculatorService calculatorService = new CalculatorService();
-
     @ParameterizedTest
     @MethodSource("argumentsPlus")
-    public void plus(int num1, int num2) {
-        int expected = num1 + num2;
+    public void plus(int num1, int num2, int expected) {
 
         Integer actual = calculatorService.plus(num1, num2);
 
         Assertions.assertEquals(expected, actual);
     }
-
     private static Stream<Arguments> argumentsPlus() {
         return Stream.of(
-                Arguments.of(5, 5),
-                Arguments.of(-5, 5),
-                Arguments.of(0, 0),
-                Arguments.of(-5, -5)
+                Arguments.of(5, 5, 10),
+                Arguments.of(-5, 5, 0),
+                Arguments.of(0, 0, 0),
+                Arguments.of(-5, -5, -10)
         );
     }
 
     @ParameterizedTest
     @MethodSource("argumentsMinus")
-    public void minus(int num1, int num2) {
-        int expected = num1 - num2;
+    public void minus(int num1, int num2, int expected) {
 
         Integer actual = calculatorService.minus(num1, num2);
 
@@ -42,10 +37,10 @@ public class CalculatorParameterizedTests {
 
     private static Stream<Arguments> argumentsMinus() {
         return Stream.of(
-                Arguments.of(5, 5),
-                Arguments.of(-5, 5),
-                Arguments.of(0, 0),
-                Arguments.of(-5, -5)
+                Arguments.of(5, 5, 0),
+                Arguments.of(-5, 5, -10),
+                Arguments.of(0, 0, 0),
+                Arguments.of(-5, -5, 0)
         );
     }
 
@@ -82,7 +77,7 @@ public class CalculatorParameterizedTests {
         return Stream.of(
                 Arguments.of(5, 5),
                 Arguments.of(-5, 5),
-                Arguments.of(0, 0),
+                Arguments.of(0, 0), // ?????? ?????? java.lang.ArithmeticException: / by zero. ??????????? ? ???? ?? ???? ?????? ??????.
                 Arguments.of(-5, -5)
         );
     }
